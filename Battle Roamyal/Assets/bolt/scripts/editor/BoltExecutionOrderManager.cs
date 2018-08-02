@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+[InitializeOnLoad]
+public static class BoltExecutionOrderManager {
+    static BoltExecutionOrderManager() {
+        //return;
+        Dictionary<string, MonoScript> monoScripts = new Dictionary<string, MonoScript>();
+
+        foreach(MonoScript monoScript in MonoImporter.GetAllRuntimeMonoScripts()) {
+            try {
+                switch(monoScript.name) {
+                    case "BoltPoll":
+                        SetExecutionOrder(monoScript, -10000);
+                        break;
+
+                    case "BoltSend":
+                        SetExecutionOrder(monoScript, +10000);
+                        break;
+
+                    case "BoltEntity":
+                        SetExecutionOrder(monoScript, -2500);
+                        break;
+
+                    default:
+                        monoScripts.Add(monoScript.name, monoScript);
+                        break;
+                }
+            } catch { }
+        }
+
+        foreach(var asm in AppDomain.CurrentDomain.GetAssemblies()) {
+            bool exc = false;
+            try {
+                asm.GetTypes();
+            } catch(System.Reflection.ReflectionTypeLoadException e) {
+                Debug.Log("Exception thrown on assembly: " + asm.ToString());
+                Debug.LogException(e);
+                exc = true;
+            }
+
+            if(!exc) {
+                foreach(var type in asm.GetTypes()) {
+                    if(monoScripts.ContainsKey(type.Name)) {
+                        try {
+                            foreach(BoltExecutionOrderAttribute attribute in type.GetCustomAttributes(typeof(BoltExecutionOrderAttribute), false)) {
+                                SetExecutionOrder(monoScripts[type.Name], attribute.executionOrder);
+                            }
+                        } catch(Exception exn) {
+                            Debug.LogException(exn);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    static void SetExecutionOrder(MonoScript script, Int32 executionOrder) {
+        if(MonoImporter.GetExecutionOrder(script) != executionOrder) {
+            MonoImporter.SetExecutionOrder(script, executionOrder);
+        }
+    }
+}
