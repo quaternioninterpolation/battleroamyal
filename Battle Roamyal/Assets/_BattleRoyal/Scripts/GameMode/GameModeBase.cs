@@ -5,17 +5,47 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameModeBase : BRScene
+public class GameModeBase : Bolt.EntityEventListener<IGameModeState>
 {
-    // Use this for initialization
-    void Start()
-    {
+    private static GameModeBase activeGameMode = null;
 
+    public static T GetActiveGameMode<T>() where T : GameModeBase
+    {
+        return activeGameMode as T;
     }
 
-    // Update is called once per frame
-    void Update()
+    public static GameModeBase GetActiveGameMode()
     {
+        return activeGameMode;
+    }
 
+    protected virtual void OnEnable()
+    {
+        activeGameMode = this;
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (activeGameMode == this)
+        {
+            activeGameMode = null;
+        }
+    }
+
+    protected virtual void Awake()
+    {
+        //Stub
+    }
+
+    public virtual void OnPlayerConnected(BoltConnection player)
+    {
+        MessageManager.AddMsg("Player connected " + player, Color.green);
+    }
+
+
+    public virtual void OnPlayerDisconnected(BoltConnection player)
+    {
+        //Stub
+        MessageManager.AddMsg("Player disconnected " + player, Color.green);
     }
 }

@@ -44,4 +44,20 @@ public class SVBoltGlobalCallbacks : Bolt.GlobalEventListener
         base.ConnectAttempt(endpoint, token);
         BoltNetwork.Accept(endpoint);
     }
+
+    public override void Connected(BoltConnection connection)
+    {
+        base.Connected(connection);
+
+        Debug.Log("Player connected. Connection: " + connection);
+        GameModeBase.GetActiveGameMode().OnPlayerConnected(connection);
+    }
+
+    public override void Disconnected(BoltConnection connection)
+    {
+        base.Disconnected(connection);
+
+        Debug.Log("Player connected. Connection: " + connection);
+        GameModeBase.GetActiveGameMode().OnPlayerDisconnected(connection);
+    }
 }
