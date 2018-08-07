@@ -5,6 +5,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BattleRoamyalGameMode : GameModeBase
 {
@@ -49,5 +50,13 @@ public class BattleRoamyalGameMode : GameModeBase
     public override void OnPlayerDisconnected(BoltConnection player)
     {
         base.OnPlayerDisconnected(player);
+
+        //Destroy their player
+        BoltEntity[] controlledEntities = BoltNetwork.entities.Where((ent) => ent.IsController(player)).ToArray();
+        //Destroy them all
+        foreach (var entity in controlledEntities)
+        {
+            BoltNetwork.Destroy(entity.gameObject);
+        }
     }
 }

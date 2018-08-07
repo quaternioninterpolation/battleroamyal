@@ -35,8 +35,6 @@ public class SVBoltGlobalCallbacks : Bolt.GlobalEventListener
     public override void BoltStartDone()
     {
         base.BoltStartDone();
-        BoltNetwork.RegisterTokenClass<ConnectionAcceptToken>();
-        BoltNetwork.RegisterTokenClass<ConnectionRequestToken>();
     }
 
     public override void ConnectAttempt(UdpEndPoint endpoint, IProtocolToken token)

@@ -35,6 +35,7 @@ public class MessageManager : SingletonMonobehaviour<MessageManager>
     {
         base.Awake();
         Transform chatInstance = Instantiate(messageUIPrefab, Vector3.zero, Quaternion.identity, transform);
+        chatUIScript = chatInstance.GetComponent<ChatUIScript>();
     }
 
     public void AddMessage(string message, Color color, float duration = 5f)

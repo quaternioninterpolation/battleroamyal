@@ -354,7 +354,13 @@ namespace MovementEffects
             }
 
             if (_exceptions.Count > 0)
+            {
+                foreach (var e in _exceptions)
+                {
+                    Debug.LogException(e);
+                }
                  throw _exceptions.Dequeue();
+            }
         }
 
         void FixedUpdate()

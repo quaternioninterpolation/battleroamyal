@@ -25,7 +25,10 @@ public class MainMenuScript : MonoBehaviour
 
     private void Awake()
     {
-        
+        if (hostBtn != null) hostBtn.onClick.AddListener(() => callback.MainMenuHostClicked());
+        if (joinBtn != null) joinBtn.onClick.AddListener(() => callback.MainMenuJoinClicked());
+        if (optionsBtn != null) optionsBtn.onClick.AddListener(() => callback.MainMenuOptionsClicked());
+        if (exitBtn != null) exitBtn.onClick.AddListener(() => callback.MainMenuExitClicked());
     }
 
     public void SetCallback(Callback callback)

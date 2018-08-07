@@ -21,6 +21,10 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         base.Awake();
 
         CreateCameraFade();
+        var config = GetComponent<ConfigBase>();
+
+        //Start the scenes
+        GoToScene(config.GetScenes()[0], false);
     }
 
     private void CreateCameraFade()
@@ -88,7 +92,7 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         GameObject sceneGO = currentScene.GetRootGameObjects().Where((arg1) => arg1.GetComponent<BRScene>() != null).FirstOrDefault();
         if (sceneGO != null)
         {
-            currentSceneScript.GetComponent<BRScene>();
+            currentSceneScript = sceneGO.GetComponent<BRScene>();
         }
         else
         {

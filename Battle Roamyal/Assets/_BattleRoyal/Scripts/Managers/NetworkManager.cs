@@ -22,6 +22,12 @@ public class NetworkManager : SingletonMonobehaviour<NetworkManager>
         SceneManager.Instance.GoToScene(levelName, true, OnServerLevelLoaded);
         currentLevel = levelName;
     }
+    
+    public void JoinServer(string ip)
+    {
+        
+        BoltLauncher.StartClient(UdpKit.UdpEndPoint.Parse(ip));
+    }
 
     public void StopServer(string menuScene)
     {

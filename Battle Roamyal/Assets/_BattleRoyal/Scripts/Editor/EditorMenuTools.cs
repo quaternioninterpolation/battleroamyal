@@ -14,7 +14,7 @@ public class EditorMenuTools
     {
         if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
         {
-            EditorSceneManager.OpenScene("Assets/Watermark/Scenes/"+LaunchScript.LAUNCH_SCENE_NAME+".unity");
+            EditorSceneManager.OpenScene("Assets/_BattleRoyal/Scenes/"+LaunchScript.LAUNCH_SCENE_NAME+".unity");
             EditorApplication.isPlaying = true;
         }
     }

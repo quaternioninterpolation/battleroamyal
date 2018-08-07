@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/_BattleRoyal/Scenes/_LaunchScene.unity
+    guid: 7a2eb384c44d74587ba5380cb02937f5
+  - enabled: 1
+    path: Assets/_BattleRoyal/Scenes/MainMenuScene.unity
+    guid: 3ac153c69d1094e5ea87e55c9f4e994b
+  - enabled: 1
+    path: Assets/_BattleRoyal/Scenes/BattleModeScene.unity
+    guid: 9cbd64b9e15e44777b8d87583f0013a1
   m_configObjects: {}

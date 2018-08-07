@@ -22,9 +22,9 @@ public class MenuScene : BRScene, MainMenuScript.Callback, JoinMenuScript.Callba
 
     private void SetScreen(Transform screen)
     {
-        mainMenuScript.gameObject.SetActive(screen == mainMenuScript);
-        joinMenu.gameObject.SetActive(screen == joinMenu);
-        hostMenu.gameObject.SetActive(screen == hostMenu);
+        mainMenuScript.gameObject.SetActive(screen == mainMenuScript.transform);
+        joinMenu.gameObject.SetActive(screen == joinMenu.transform);
+        hostMenu.gameObject.SetActive(screen == hostMenu.transform);
     }
 
     public void MainMenuExitClicked()
