@@ -11,7 +11,7 @@ public class JoinMenuScript : MonoBehaviour
 	public interface Callback
     {
         void JoinClicked(string ipAddress);
-        void JoinCanceled();
+        void JoinCancelled();
     }
 
     public InputField ipInput;
@@ -22,7 +22,8 @@ public class JoinMenuScript : MonoBehaviour
 
     private void Awake()
     {
-        //joinBtn.onClick.AddListener(
+        joinBtn.onClick.AddListener(OnJoinClicked);
+        backBtn.onClick.AddListener(() => callback?.JoinCancelled());
     }
 
     private void OnJoinClicked()

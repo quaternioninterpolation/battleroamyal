@@ -58,6 +58,9 @@ public class CameraFade : MonoBehaviour
 
     public void BeginFade(bool fadeOut, Action callback)
     {
-        //image.DO
+        image.DOKill();
+        image.DOFade(fadeOut ? 0f : 1f, 0f).Complete();
+        image.DOFade(fadeOut ? 1f : 0f, 0.3f)
+            .OnComplete(()=>callback?.Invoke());
     }
 }

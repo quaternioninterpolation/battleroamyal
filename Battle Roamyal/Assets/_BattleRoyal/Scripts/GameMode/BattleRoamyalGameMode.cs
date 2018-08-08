@@ -27,9 +27,9 @@ public class BattleRoamyalGameMode : GameModeBase
         spawnPositions = GetComponentsInChildren<SpawnPosition>();
     }
 
-    public override void OnPlayerConnected(BoltConnection player)
+    public override void SV_OnPlayerConnected(BoltConnection player)
     {
-        base.OnPlayerConnected(player);
+        base.SV_OnPlayerConnected(player);
 
         if (BoltNetwork.isServer)
         {
@@ -47,9 +47,9 @@ public class BattleRoamyalGameMode : GameModeBase
         PlayerController player = playerEnt.GetComponent<PlayerController>();
     }
 
-    public override void OnPlayerDisconnected(BoltConnection player)
+    public override void SV_OnPlayerDisconnected(BoltConnection player)
     {
-        base.OnPlayerDisconnected(player);
+        base.SV_OnPlayerDisconnected(player);
 
         //Destroy their player
         BoltEntity[] controlledEntities = BoltNetwork.entities.Where((ent) => ent.IsController(player)).ToArray();

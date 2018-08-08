@@ -37,13 +37,13 @@ public class GameModeBase : Bolt.EntityEventListener<IGameModeState>
         //Stub
     }
 
-    public virtual void OnPlayerConnected(BoltConnection player)
+    public virtual void SV_OnPlayerConnected(BoltConnection player)
     {
         MessageManager.AddMsg("Player connected " + player, Color.green);
     }
 
 
-    public virtual void OnPlayerDisconnected(BoltConnection player)
+    public virtual void SV_OnPlayerDisconnected(BoltConnection player)
     {
         //Stub
         MessageManager.AddMsg("Player disconnected " + player, Color.green);

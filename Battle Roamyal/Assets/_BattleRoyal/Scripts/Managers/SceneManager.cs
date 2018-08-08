@@ -89,10 +89,10 @@ public class SceneManager : SingletonMonobehaviour<SceneManager>
         yield return Timing.WaitUntilDone(asyncOp);
 
         currentScene = UnityEngine.SceneManagement.SceneManager.GetSceneByName(scene);
-        GameObject sceneGO = currentScene.GetRootGameObjects().Where((arg1) => arg1.GetComponent<BRScene>() != null).FirstOrDefault();
+        GameObject sceneGO = currentScene.GetRootGameObjects().Where((arg1) => arg1.GetComponentInChildren<BRScene>() != null).FirstOrDefault();
         if (sceneGO != null)
         {
-            currentSceneScript = sceneGO.GetComponent<BRScene>();
+            currentSceneScript = sceneGO.GetComponentInChildren<BRScene>();
         }
         else
         {

@@ -55,7 +55,7 @@ public class MenuScene : BRScene, MainMenuScript.Callback, JoinMenuScript.Callba
         NetworkManager.Instance.StartServer(BRConfig.SceneNames.battleMode);
     }
 
-    public void JoinCanceled()
+    public void JoinCancelled()
     {
         SetScreen(mainMenuScript.transform);
     }
